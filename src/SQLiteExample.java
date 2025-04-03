@@ -12,12 +12,12 @@ public class SQLiteExample {
     public static void main(String[] args) {
         createNewDatabase();
         createNewTable();
-        insertDocument("Dokument 1", "Inhalt des Dokuments 1");
-        insertDocument("Dokument 2", "Inhalt des Dokuments 2");
+        insertDocument("Dokument 1", "Inhalt des Dokuments 1","Bärenessen Marmelade");
+        insertDocument("Dokument 2", "Inhalt des Dokuments 2","Bärenessen Marmelade");
         selectAllDocuments();
     }
 
-    // Methode zur Erstellung einer neuen Datenbank
+
     public static void createNewDatabase() {
         try (Connection conn = DriverManager.getConnection(URL)) {
             if (conn != null) {
@@ -28,12 +28,13 @@ public class SQLiteExample {
         }
     }
 
-    // Methode zur Erstellung einer neuen Tabelle
+
     public static void createNewTable() {
         String sql = "CREATE TABLE IF NOT EXISTS dokumente (\n"
                 + " id integer PRIMARY KEY AUTOINCREMENT,\n"
                 + " titel text NOT NULL,\n"
                 + " inhalt text NOT NULL\n"
+                + " Thema  text NOT NULL\n"
                 + ");";
 
         try (Connection conn = DriverManager.getConnection(URL);
@@ -45,14 +46,15 @@ public class SQLiteExample {
         }
     }
 
-    // Methode zum Einfügen eines Dokuments
-    public static void insertDocument(String titel, String inhalt) {
-        String sql = "INSERT INTO dokumente(titel, inhalt) VALUES(?, ?)";
+
+    public static void insertDocument(String titel, String inhalt, String Thema) {
+        String sql = "INSERT INTO dokumente(titel, inhalt,Thema) VALUES(?, ?,? )";
 
         try (Connection conn = DriverManager.getConnection(URL);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, titel);
             pstmt.setString(2, inhalt);
+            pstmt.setString(3, Thema);
             pstmt.executeUpdate();
             System.out.println("Dokument hinzugefügt: " + titel);
         } catch (SQLException e) {
@@ -60,7 +62,7 @@ public class SQLiteExample {
         }
     }
 
-    // Methode zum Abfragen aller Dokumente
+
     public static void selectAllDocuments() {
         String sql = "SELECT * FROM dokumente";
 
@@ -72,7 +74,7 @@ public class SQLiteExample {
                 System.out.println("ID: " + rs.getInt("id"));
                 System.out.println("Titel: " + rs.getString("titel"));
                 System.out.println("Inhalt: " + rs.getString("inhalt"));
-                System.out.println();
+                System.out.println("Thema" + rs.getString("Thema"));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
