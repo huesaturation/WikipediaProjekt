@@ -33,7 +33,7 @@ public class SQLiteExample {
         String sql = "CREATE TABLE IF NOT EXISTS dokumente (\n"
                 + " id integer PRIMARY KEY AUTOINCREMENT,\n"
                 + " titel text NOT NULL,\n"
-                + " inhalt text NOT NULL\n"
+                + " inhalt text NOT NULL,\n"
                 + " Thema  text NOT NULL\n"
                 + ");";
 
@@ -74,7 +74,7 @@ public class SQLiteExample {
                 System.out.println("ID: " + rs.getInt("id"));
                 System.out.println("Titel: " + rs.getString("titel"));
                 System.out.println("Inhalt: " + rs.getString("inhalt"));
-                System.out.println("Thema" + rs.getString("Thema"));
+                System.out.println("Thema:" + rs.getString("Thema"));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
