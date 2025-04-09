@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
 
-public class Wikirace extends JFrame
+public class Wikirace extends JFrame //Jpanel needed
 {
     private String currentArticle;
     private String targetArticle;
