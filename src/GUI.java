@@ -3,20 +3,21 @@ import java.awt.*;
 
 public class GUI
 {
-    JFrame window = new JFrame("Prime Facts");
-    CardLayout cardLayout = new CardLayout();
-    JPanel mainPanel = new JPanel();
 
     public GUI()
     {
+        JFrame window = new JFrame("Prime Facts");
+        CardLayout cardLayout = new CardLayout();
+        JPanel mainPanel = new JPanel();
+
         //initialize
         window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         window.setSize(1920 , 1080);
         window.setVisible(true);
 
         // Seiten erstellen
-        JPanel searchPage = createSearchPage();
-        JPanel articlePage = createArticlePage();
+        JPanel searchPage = getSearchPage();
+        JPanel articlePage = getArticlePage();
 
         mainPanel.setLayout(cardLayout);
         mainPanel.add(articlePage , "article");
@@ -27,7 +28,7 @@ public class GUI
         window.add(mainPanel);
     }
 
-    public JPanel createSearchPage()
+    public JPanel getSearchPage()
     {
         JPanel mainPanel = new JPanel();
 
@@ -38,7 +39,7 @@ public class GUI
         return mainPanel;
     }
 
-    public JPanel createArticlePage()
+    public JPanel getArticlePage()
     {
         BorderLayout bLayout = new BorderLayout();
         JPanel mainPanel = new JPanel(bLayout);
