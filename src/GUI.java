@@ -4,7 +4,7 @@ import java.awt.*;
 public class GUI
 {
     JFrame window = new JFrame("Prime Facts");
-    CardLayout pageLayout = new CardLayout();
+    CardLayout cardLayout = new CardLayout();
     JPanel mainPanel = new JPanel();
 
     public GUI()
@@ -18,27 +18,30 @@ public class GUI
         JPanel searchPage = createSearchPage();
         JPanel articlePage = createArticlePage();
 
-        mainPanel.setLayout(new FlowLayout());
-        mainPanel.add(createArticlePage());
+        mainPanel.setLayout(cardLayout);
+        mainPanel.add(articlePage , "article");
+        mainPanel.add(searchPage , "home");
 
-        //pageLayout.show(articlePage , "Article");
+        cardLayout.show(mainPanel , "home");
 
         window.add(mainPanel);
     }
 
     public JPanel createSearchPage()
     {
-        JPanel panel = new JPanel();
+        JPanel mainPanel = new JPanel();
 
-        return panel;
+        JTextField searchField = new JTextField();
+
+        mainPanel.add(searchField);
+
+        return mainPanel;
     }
 
     public JPanel createArticlePage()
     {
-        CardLayout cardLayout = new CardLayout();
         BorderLayout bLayout = new BorderLayout();
-        JPanel mainPanel = new JPanel(cardLayout);
-        JPanel contentPanel = new JPanel(bLayout);
+        JPanel mainPanel = new JPanel(bLayout);
         JPanel rightPanel = new JPanel();
         rightPanel.setLayout(new BoxLayout(rightPanel , BoxLayout.Y_AXIS));
         JPanel leftPanel = new JPanel(new FlowLayout());
@@ -53,14 +56,12 @@ public class GUI
 
         leftPanel.add(new JButton("Zurueck zum Hauptmenu"));
 
-        contentPanel.add(contentTextArea , BorderLayout.CENTER);
-        contentPanel.add(leftPanel , BorderLayout.WEST);
-        contentPanel.add(rightPanel , BorderLayout.EAST);
+        mainPanel.add(contentTextArea , BorderLayout.CENTER);
+        mainPanel.add(leftPanel , BorderLayout.WEST);
+        mainPanel.add(rightPanel , BorderLayout.EAST);
 
         bLayout.setHgap(50);
         bLayout.setVgap(100);
-
-        mainPanel.add(contentPanel);
 
         return mainPanel;
     }
