@@ -6,6 +6,7 @@ import java.util.Random;
 
 public class Wikirace extends JFrame //Jpanel needed
 {
+    //Article needs to be implemented as class
     private String currentArticle;
     private String targetArticle;
     private JTextArea articleContent;
