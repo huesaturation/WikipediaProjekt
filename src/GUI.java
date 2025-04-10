@@ -3,11 +3,11 @@ import java.awt.*;
 
 public class GUI
 {
+    public JFrame window = new JFrame("Prime Facts");
+    public CardLayout pageLayout = new CardLayout();
 
     public GUI()
     {
-        JFrame window = new JFrame("Prime Facts");
-        CardLayout cardLayout = new CardLayout();
         JPanel mainPanel = new JPanel();
 
         //initialize
@@ -19,11 +19,11 @@ public class GUI
         JPanel searchPage = getSearchPage();
         JPanel articlePage = getArticlePage();
 
-        mainPanel.setLayout(cardLayout);
+        mainPanel.setLayout(pageLayout);
         mainPanel.add(articlePage , "article");
         mainPanel.add(searchPage , "home");
 
-        cardLayout.show(mainPanel , "home");
+        pageLayout.show(mainPanel , "home");
 
         window.add(mainPanel);
     }
@@ -46,10 +46,15 @@ public class GUI
         JPanel rightPanel = new JPanel();
         rightPanel.setLayout(new BoxLayout(rightPanel , BoxLayout.Y_AXIS));
         JPanel leftPanel = new JPanel(new FlowLayout());
+        JPanel centerPanel = new JPanel();
+        centerPanel.setLayout(new BoxLayout(centerPanel , BoxLayout.Y_AXIS));
 
         //TODO Load Content from db
         JTextArea contentTextArea = new JTextArea("Lorem Ipsum dolor sit amet...");
         contentTextArea.setEditable(false);
+
+        //TODO Load Content from db
+        JLabel titel = new JLabel("Test");
 
         rightPanel.add(new JTextArea("Kapitel 1"));
         rightPanel.add(new JTextArea("Kapitel 2"));
@@ -57,7 +62,10 @@ public class GUI
 
         leftPanel.add(new JButton("Zurueck zum Hauptmenu"));
 
-        mainPanel.add(contentTextArea , BorderLayout.CENTER);
+        centerPanel.add(titel);
+        centerPanel.add(contentTextArea);
+
+        mainPanel.add(centerPanel , BorderLayout.CENTER);
         mainPanel.add(leftPanel , BorderLayout.WEST);
         mainPanel.add(rightPanel , BorderLayout.EAST);
 
