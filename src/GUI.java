@@ -14,6 +14,7 @@ public class GUI
         window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         window.setSize(1920 , 1080);
         window.setVisible(true);
+        window.getContentPane().setBackground(Color.DARK_GRAY);
 
         // Seiten erstellen
         JPanel searchPage = getSearchPage();
@@ -23,7 +24,7 @@ public class GUI
         mainPanel.add(articlePage , "article");
         mainPanel.add(searchPage , "home");
 
-        pageLayout.show(mainPanel , "home");
+        pageLayout.show(mainPanel , "article");
 
         window.add(mainPanel);
     }
@@ -31,6 +32,7 @@ public class GUI
     public JPanel getSearchPage()
     {
         JPanel mainPanel = new JPanel();
+        mainPanel.setBackground(Color.DARK_GRAY);
 
         JTextField searchField = new JTextField();
 
@@ -43,24 +45,44 @@ public class GUI
     {
         BorderLayout bLayout = new BorderLayout();
         JPanel mainPanel = new JPanel(bLayout);
+        mainPanel.setBackground(Color.DARK_GRAY);
+
+
         JPanel rightPanel = new JPanel();
+        rightPanel.setBackground(Color.DARK_GRAY);
+        rightPanel.setForeground(Color.white);
         rightPanel.setLayout(new BoxLayout(rightPanel , BoxLayout.Y_AXIS));
+
         JPanel leftPanel = new JPanel(new FlowLayout());
+        leftPanel.setBackground(Color.DARK_GRAY);
+        leftPanel.setForeground(Color.white);
+
         JPanel centerPanel = new JPanel();
+        centerPanel.setBackground(Color.DARK_GRAY);
+        centerPanel.setForeground(Color.white);
         centerPanel.setLayout(new BoxLayout(centerPanel , BoxLayout.Y_AXIS));
 
         //TODO Load Content from db
         JTextArea contentTextArea = new JTextArea("Lorem Ipsum dolor sit amet...");
         contentTextArea.setEditable(false);
+        contentTextArea.setBackground(Color.DARK_GRAY);
+        contentTextArea.setForeground(Color.white);
+
 
         //TODO Load Content from db
         JLabel titel = new JLabel("Test");
+        titel.setBackground(Color.DARK_GRAY);
+        titel.setForeground(Color.white);
+
 
         rightPanel.add(new JTextArea("Kapitel 1"));
         rightPanel.add(new JTextArea("Kapitel 2"));
         rightPanel.add(new JTextArea("Kapitel 3"));
 
-        leftPanel.add(new JButton("Zurueck zum Hauptmenu"));
+        JButton homebutton = new JButton("Zurueck zum Hauptmenu");
+        homebutton.setBackground(Color.black);
+        homebutton.setForeground(Color.white);
+        leftPanel.add(homebutton);
 
         centerPanel.add(titel);
         centerPanel.add(contentTextArea);
