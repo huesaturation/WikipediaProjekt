@@ -4,9 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
 
-public class Wikirace extends JFrame //Jpanel needed
+public class Wikirace extends JPanel
 {
-    //Article needs to be implemented as class
+    //TODO Article needs to be implemented as class
     private String currentArticle;
     private String targetArticle;
     private JTextArea articleContent;
@@ -16,9 +16,7 @@ public class Wikirace extends JFrame //Jpanel needed
     private int timeElapsed;
 
     public Wikirace() {
-        setTitle("Wikirace");
         setSize(400, 300);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
         targetLabel = new JLabel("Zielartikel: ");
@@ -42,7 +40,6 @@ public class Wikirace extends JFrame //Jpanel needed
         currentArticle = articles[random.nextInt(articles.length)];
         targetArticle = articles[random.nextInt(articles.length)];
 
-        // Sicherstellen, dass der Zielartikel nicht der Startartikel ist
         while (currentArticle.equals(targetArticle)) {
             targetArticle = articles[random.nextInt(articles.length)];
         }
