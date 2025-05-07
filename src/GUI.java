@@ -24,19 +24,28 @@ public class GUI
         mainPanel.add(articlePage , "article");
         mainPanel.add(searchPage , "home");
 
-        pageLayout.show(mainPanel , "article");
+        pageLayout.show(mainPanel , "home");  //Seite die beim Start geladen wird
 
         window.add(mainPanel);
     }
 
     public JPanel getSearchPage()
     {
-        JPanel mainPanel = new JPanel();
+        FlowLayout flow = new FlowLayout(FlowLayout.CENTER , 0 ,0);
+        BorderLayout layout = new BorderLayout();
+        JPanel mainPanel = new JPanel(layout);
+        JPanel centerPanel = new JPanel(flow);
+        centerPanel.setBackground(Color.DARK_GRAY);
         mainPanel.setBackground(Color.DARK_GRAY);
 
-        JTextField searchField = new JTextField();
+        JTextField searchField = new JTextField(20);
+        searchField.setForeground(Color.WHITE);
+        searchField.setCaretColor(Color.WHITE);
+        searchField.setBackground(Color.BLACK);
+        searchField.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 
-        mainPanel.add(searchField);
+        mainPanel.add(centerPanel , BorderLayout.CENTER);
+        centerPanel.add(searchField);
 
         return mainPanel;
     }
@@ -80,8 +89,11 @@ public class GUI
         rightPanel.add(new JTextArea("Kapitel 3"));
 
         JButton homebutton = new JButton("Zurueck zum Hauptmenu");
-        homebutton.setBackground(Color.black);
-        homebutton.setForeground(Color.white);
+        homebutton.setBackground(Color.BLACK);
+        homebutton.setForeground(Color.WHITE);
+        homebutton.setFocusPainted(false);
+        homebutton.setBorderPainted(false);
+        homebutton.setOpaque(true);
         leftPanel.add(homebutton);
 
         centerPanel.add(titel);
