@@ -19,8 +19,9 @@ public class ArticleRetriever {
         scanner.close();
     }
 
-    public static void retrieveArticle(String title) {
+    public static String retrieveArticle(String title) {
         String sql = "SELECT id, article_name, content FROM articles WHERE article_name = ?"; // SQL-Abfrage
+        String content = "";
 
         try (Connection conn = DriverManager.getConnection(URL);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -31,7 +32,7 @@ public class ArticleRetriever {
             if (rs.next()) {
                 int id = rs.getInt("id");
                 String articleName = rs.getString("article_name");
-                String content = rs.getString("content");
+                 content = rs.getString("content");
 
                 // Ausgabe der Artikelinformationen
                 System.out.printf("ID: %d, Artikelname: %s, Inhalt: %s%n", id, articleName, content);
@@ -41,5 +42,5 @@ public class ArticleRetriever {
         } catch (SQLException e) {
             System.out.println("Fehler beim Abrufen des Artikels: " + e.getMessage());
         }
-    }
+       return content; }
 }
