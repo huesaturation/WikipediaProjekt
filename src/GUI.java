@@ -6,7 +6,10 @@ import java.awt.event.ActionListener;
 public class GUI
 {
     private JFrame window = new JFrame("Prime Facts");
+
+    //Do not use this to load page use the functions instead!
     private CardLayout pageLayout = new CardLayout();
+    //last loaded search querry
     private String searchquerry;
     private JPanel mainPanel = new JPanel();
 
@@ -27,6 +30,7 @@ public class GUI
         mainPanel.setLayout(pageLayout);
         mainPanel.add(articlePage , "article");
         mainPanel.add(searchPage , "home");
+
 
         pageLayout.show(mainPanel , "home");  //Seite die beim Start geladen wird
 
@@ -114,8 +118,8 @@ public class GUI
         centerPanel.setForeground(Color.white);
         centerPanel.setLayout(new BoxLayout(centerPanel , BoxLayout.Y_AXIS));
 
-        //TODO Load Content from db
-        JTextArea contentTextArea = new JTextArea(searchquerry);
+        //Backend check the output for a valid search querry
+        JTextArea contentTextArea = new JTextArea(ArticleRetriever.retrieveArticle(searchquerry));
         contentTextArea.setEditable(false);
         contentTextArea.setBackground(Color.DARK_GRAY);
         contentTextArea.setForeground(Color.white);
