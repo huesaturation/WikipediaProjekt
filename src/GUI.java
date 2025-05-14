@@ -1,14 +1,18 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class GUI
 {
-    public JFrame window = new JFrame("Prime Facts");
-    public CardLayout pageLayout = new CardLayout();
+    private JFrame window = new JFrame("Prime Facts");
+    private CardLayout pageLayout = new CardLayout();
+    private String searchquerry;
+    private JPanel mainPanel = new JPanel();
 
     public GUI()
     {
-        JPanel mainPanel = new JPanel();
+
 
         //initialize
         window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -29,14 +33,37 @@ public class GUI
         window.add(mainPanel);
     }
 
+    public void loadArticlePage()
+    {
+        mainPanel.removeAll();
+
+        mainPanel.add(getArticlePage() , "article");
+        mainPanel.add(getSearchPage() , "home");
+
+        pageLayout.show(mainPanel , "article");
+    }
+
+    public void loadSearchPage()
+    {
+        mainPanel.removeAll();
+
+        mainPanel.add(getArticlePage() , "article");
+        mainPanel.add(getSearchPage() , "home");
+
+        pageLayout.show(mainPanel , "home");
+    }
+
+
+
     public JPanel getSearchPage()
     {
         FlowLayout flow = new FlowLayout(FlowLayout.CENTER , 0 ,0);
         BorderLayout layout = new BorderLayout();
-        JPanel mainPanel = new JPanel(layout);
+        JPanel searchPanel = new JPanel(layout);
         JPanel centerPanel = new JPanel(flow);
         centerPanel.setBackground(Color.DARK_GRAY);
-        mainPanel.setBackground(Color.DARK_GRAY);
+        searchPanel.setBackground(Color.DARK_GRAY);
+
 
         JTextField searchField = new JTextField(20);
         searchField.setForeground(Color.WHITE);
@@ -44,10 +71,26 @@ public class GUI
         searchField.setBackground(Color.BLACK);
         searchField.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 
-        mainPanel.add(centerPanel , BorderLayout.CENTER);
-        centerPanel.add(searchField);
 
-        return mainPanel;
+        JButton searchButton = new JButton("Search");
+        searchButton.setBackground(Color.BLACK);
+        searchButton.setForeground(Color.WHITE);
+        searchButton.setFocusPainted(false);
+        searchButton.setBorderPainted(false);
+        searchButton.setOpaque(true);
+
+        searchButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                searchquerry = searchField.getText();  // Get text from the JTextField
+                loadArticlePage();
+            }
+        });
+
+        searchPanel.add(centerPanel , BorderLayout.CENTER);
+        centerPanel.add(searchField);
+        centerPanel.add(searchButton);
+
+        return searchPanel;
     }
 
     public JPanel getArticlePage()
@@ -72,7 +115,7 @@ public class GUI
         centerPanel.setLayout(new BoxLayout(centerPanel , BoxLayout.Y_AXIS));
 
         //TODO Load Content from db
-        JTextArea contentTextArea = new JTextArea("Lorem Ipsum dolor sit amet...");
+        JTextArea contentTextArea = new JTextArea(searchquerry);
         contentTextArea.setEditable(false);
         contentTextArea.setBackground(Color.DARK_GRAY);
         contentTextArea.setForeground(Color.white);
