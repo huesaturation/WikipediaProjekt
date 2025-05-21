@@ -1,3 +1,4 @@
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -7,7 +8,8 @@ import java.util.Scanner;
 
 public class ArticleRetriever {
 
-    private static final String URL = "jdbc:sqlite:Artikel.db"; // Pfad zur Datenbank
+    private static File dbFile = new File("Artikel.db");
+    private static final String URL = "jdbc:sqlite:" + dbFile.getAbsoluteFile(); // Pfad zur Datenbank
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
