@@ -38,9 +38,11 @@ public class ArticleRetriever {
                 System.out.printf("ID: %d, Artikelname: %s, Inhalt: %s%n", id, articleName, content);
             } else {
                 System.out.println("Kein Artikel mit dem Titel '" + title + "' gefunden.");
+                return "Kein Artikel mit dem Titel '" + title + "' gefunden.";
             }
         } catch (SQLException e) {
             System.out.println("Fehler beim Abrufen des Artikels: " + e.getMessage());
+            return e.getMessage();
         }
        return content; }
 }
