@@ -1,0 +1,12 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="WikipediaProjekt:jar">
+    <output-path>$PROJECT_DIR$/out/production/WikipediaProjekt/artifacts/WikipediaProjekt_jar</output-path>
+    <root id="archive" name="WikipediaProjekt.jar">
+      <element id="module-output" name="WikipediaProjekt" />
+      <element id="library" level="project" name="sqlite-jdbc-3.49.1.2" />
+      <element id="library" level="project" name="sqlite-jdbc-3.49.1.01" />
+      <element id="library" level="project" name="sqlite-jdbc-3.49.1.0" />
+      <element id="library" level="project" name="sqlite-jdbc-3.49.1.1" />
+    </root>
+  </artifact>
+</component>
