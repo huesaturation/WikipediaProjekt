@@ -142,6 +142,12 @@ public class GUI
         homebutton.setBorderPainted(false);
         homebutton.setOpaque(true);
         leftPanel.add(homebutton);
+        homebutton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                loadSearchPage();
+            }
+        });
+
 
         centerPanel.add(titel);
         centerPanel.add(contentTextArea);
