@@ -1,3 +1,4 @@
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -7,7 +8,8 @@ import java.util.Scanner;
 
 public class ArticleRetriever {
 
-    private static final String URL = "jdbc:sqlite:Artikel.db"; // Pfad zur Datenbank
+    private static File dbFile = new File("Artikel.db");
+    private static final String URL = "jdbc:sqlite:" + dbFile.getAbsoluteFile(); // Pfad zur Datenbank
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -38,9 +40,11 @@ public class ArticleRetriever {
                 System.out.printf("ID: %d, Artikelname: %s, Inhalt: %s%n", id, articleName, content);
             } else {
                 System.out.println("Kein Artikel mit dem Titel '" + title + "' gefunden.");
+                return "Kein Artikel mit dem Titel '" + title + "' gefunden.";
             }
         } catch (SQLException e) {
             System.out.println("Fehler beim Abrufen des Artikels: " + e.getMessage());
+            return e.getMessage();
         }
        return content; }
 }
