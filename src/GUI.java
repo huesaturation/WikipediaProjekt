@@ -1,7 +1,10 @@
 import javax.swing.*;
+import javax.swing.JScrollBar;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JScrollBar;
+
 
 public class GUI
 {
@@ -35,6 +38,11 @@ public class GUI
         pageLayout.show(mainPanel , "home");  //Seite die beim Start geladen wird
 
         window.add(mainPanel);
+
+        //Scrollbar
+        JScrollBar scrollbar = new JScrollBar();
+        scrollbar.setBounds(100,150,150,150);
+        articlePage.add(scrollbar);
     }
 
     public void loadArticlePage()
@@ -161,4 +169,5 @@ public class GUI
 
         return mainPanel;
     }
+
 }
