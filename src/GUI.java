@@ -18,8 +18,6 @@ public class GUI
 
     public GUI()
     {
-
-
         //initialize
         window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         window.setSize(1920 , 1080);
@@ -90,6 +88,14 @@ public class GUI
         searchButton.setFocusPainted(false);
         searchButton.setBorderPainted(false);
         searchButton.setOpaque(true);
+
+        searchField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                 searchquerry = searchField.getText();
+                 loadArticlePage();
+            }
+        });
 
         searchButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
