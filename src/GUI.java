@@ -37,10 +37,6 @@ public class GUI
 
         window.add(mainPanel);
 
-        //Scrollbar
-        JScrollBar scrollbar = new JScrollBar();
-        scrollbar.setBounds(100,150,150,150);
-        articlePage.add(scrollbar);
     }
 
     public void loadArticlePage()
@@ -172,6 +168,14 @@ public class GUI
 
         bLayout.setHgap(50);
         bLayout.setVgap(100);
+
+
+        //Scrollbar
+        JScrollBar scrollbar = new JScrollBar();
+        scrollbar.setBounds(50,50,50,100);
+        scrollbar.setBackground(Color.DARK_GRAY);
+        mainPanel.add(scrollbar);
+
 
         return mainPanel;
     }
