@@ -141,9 +141,10 @@ public class GUI
         titel.setForeground(Color.white);
 
 
-        rightPanel.add(new JTextArea("Kapitel 1"));
-        rightPanel.add(new JTextArea("Kapitel 2"));
-        rightPanel.add(new JTextArea("Kapitel 3"));
+        //rightPanel.add(new JTextArea("Kapitel 1"));
+        //rightPanel.add(new JTextArea("Kapitel 2"));
+        //rightPanel.add(new JTextArea("Kapitel 3"));
+        //Kapitel müssen etwas verschoben werden, ansonsten passt die Scrollbar nicht hin. Sind erstmal ausgeblendet, damit Scrollbar funktioniert
 
         JButton homebutton = new JButton("Zurueck zum Hauptmenu");
         homebutton.setBackground(Color.BLACK);
@@ -173,7 +174,7 @@ public class GUI
         //Scrollbar
         JScrollBar scrollbar = new JScrollBar();
         scrollbar.setBackground(Color.DARK_GRAY);
-        scrollbar.setSize(10,1000);
+        scrollbar.setSize(50,1000);
         rightPanel.add(scrollbar);
 
 
