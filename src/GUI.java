@@ -172,9 +172,9 @@ public class GUI
 
         //Scrollbar
         JScrollBar scrollbar = new JScrollBar();
-        scrollbar.setBounds(50,50,50,100);
         scrollbar.setBackground(Color.DARK_GRAY);
-        mainPanel.add(scrollbar);
+        scrollbar.setSize(10,1000);
+        rightPanel.add(scrollbar);
 
 
         return mainPanel;
