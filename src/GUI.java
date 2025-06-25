@@ -166,7 +166,8 @@ public class GUI
         mainPanel.add(centerPanel , BorderLayout.CENTER);
         mainPanel.add(leftPanel , BorderLayout.WEST);
         mainPanel.add(rightPanel , BorderLayout.EAST);
-
+        mainPanel.add(new Putting_Green(), BorderLayout.NORTH);
+    //Hier weiterarbeiten an Interaktives einbetten
         bLayout.setHgap(50);
         bLayout.setVgap(100);
 
