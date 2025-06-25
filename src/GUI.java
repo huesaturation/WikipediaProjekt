@@ -134,6 +134,15 @@ public class GUI
         contentTextArea.setBackground(Color.DARK_GRAY);
         contentTextArea.setForeground(Color.white);
 
+        // Add JTextArea to JScrollPane to enable scrolling (just warpping the Contenttextarea)
+        JScrollPane scrollPane = new JScrollPane(contentTextArea);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollPane.setBackground(Color.DARK_GRAY);
+        scrollPane.getVerticalScrollBar().setBackground(Color.DARK_GRAY);
+        scrollPane.setBorder(null);
+        scrollPane.getVerticalScrollBar().setBorder(null);
+
+
 
         //TODO Load Content from db
         JLabel titel = new JLabel("Test");
@@ -161,7 +170,7 @@ public class GUI
 
 
         centerPanel.add(titel);
-        centerPanel.add(contentTextArea);
+        centerPanel.add(scrollPane);
 
         mainPanel.add(centerPanel , BorderLayout.CENTER);
         mainPanel.add(leftPanel , BorderLayout.WEST);
@@ -169,13 +178,6 @@ public class GUI
 
         bLayout.setHgap(50);
         bLayout.setVgap(100);
-
-
-        //Scrollbar
-        JScrollBar scrollbar = new JScrollBar();
-        scrollbar.setBackground(Color.DARK_GRAY);
-        scrollbar.setSize(50,1000);
-        rightPanel.add(scrollbar);
 
 
         return mainPanel;
