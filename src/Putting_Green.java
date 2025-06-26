@@ -23,7 +23,7 @@ public class Putting_Green extends JPanel implements ActionListener {
     private int currentStep;
 
     // UI Components
-    private JFrame frame;
+    //private JFrame frame;
     private JButton shootButton;
     private JSlider angleSlider;
     private JSlider strengthSlider;
@@ -43,10 +43,11 @@ public class Putting_Green extends JPanel implements ActionListener {
         initUI();
     }
 
-    private void initUI() {
-        frame = new JFrame("Putting Green Simulator");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(new BorderLayout());
+    //TODO fixing horrible ai code to actually work with our system
+
+    public  JPanel createPuttingGreenPanel() {
+        // Hauptpanel für alles
+        JPanel mainPanel = new JPanel(new BorderLayout());
 
         // Steuerpanel für Winkel und Stärke
         JPanel controlPanel = new JPanel();
@@ -98,13 +99,75 @@ public class Putting_Green extends JPanel implements ActionListener {
         angleSlider.addChangeListener(e -> updateStatus());
         strengthSlider.addChangeListener(e -> updateStatus());
 
-        frame.add(this, BorderLayout.CENTER);
-        frame.add(controlPanel, BorderLayout.SOUTH);
-        frame.add(statusLabel, BorderLayout.NORTH);
+        mainPanel.add(this, BorderLayout.CENTER);
+        mainPanel.add(controlPanel, BorderLayout.SOUTH);
+        mainPanel.add(statusLabel, BorderLayout.NORTH);
 
-        frame.pack();
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
+        return mainPanel;
+    }
+
+    private void initUI() {
+        //frame = new JFrame("Putting Green Simulator");
+        //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //frame.setLayout(new BorderLayout());
+
+        // Steuerpanel für Winkel und Stärke
+        JPanel controlPanel = new JPanel();
+        controlPanel.setBackground(new Color(40, 130, 55));
+        controlPanel.setLayout(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
+        c.insets = new Insets(8,8,8,8);
+        c.fill = GridBagConstraints.HORIZONTAL;
+
+        JLabel angleLabel = new JLabel("Winkel (Grad):");
+        angleLabel.setForeground(Color.white);
+        c.gridx = 0; c.gridy = 0;
+        controlPanel.add(angleLabel, c);
+
+        angleSlider = new JSlider(0, 360, 0);
+        angleSlider.setMajorTickSpacing(90);
+        angleSlider.setMinorTickSpacing(15);
+        angleSlider.setPaintTicks(true);
+        angleSlider.setPaintLabels(true);
+        c.gridx = 1; c.gridy = 0;
+        controlPanel.add(angleSlider, c);
+
+        JLabel strengthLabel = new JLabel("Stärke (1-100):");
+        strengthLabel.setForeground(Color.white);
+        c.gridx = 0; c.gridy = 1;
+        controlPanel.add(strengthLabel, c);
+
+        strengthSlider = new JSlider(1, 100, 50);
+        strengthSlider.setMajorTickSpacing(25);
+        strengthSlider.setMinorTickSpacing(5);
+        strengthSlider.setPaintTicks(true);
+        strengthSlider.setPaintLabels(true);
+        c.gridx = 1; c.gridy = 1;
+        controlPanel.add(strengthSlider, c);
+
+        shootButton = new JButton("Schießen");
+        shootButton.setBackground(new Color(255, 215, 0));
+        shootButton.setFocusPainted(false);
+        shootButton.setFont(new Font("SansSerif", Font.BOLD, 16));
+        shootButton.addActionListener(e -> shoot());
+        c.gridx = 0; c.gridy = 2; c.gridwidth = 2;
+        controlPanel.add(shootButton, c);
+
+        statusLabel = new JLabel("Schläge: 0 / " + MAX_SHOTS + "  |  Winkel: 0°  |  Stärke: 50");
+        statusLabel.setForeground(Color.white);
+        statusLabel.setFont(new Font("SansSerif", Font.BOLD, 14));
+        statusLabel.setHorizontalAlignment(SwingConstants.CENTER);
+
+        angleSlider.addChangeListener(e -> updateStatus());
+        strengthSlider.addChangeListener(e -> updateStatus());
+
+        //frame.add(this, BorderLayout.CENTER);
+        //frame.add(controlPanel, BorderLayout.SOUTH);
+        //frame.add(statusLabel, BorderLayout.NORTH);
+
+        //frame.pack();
+        //frame.setLocationRelativeTo(null);
+        //frame.setVisible(true);
     }
 
     private void updateStatus() {

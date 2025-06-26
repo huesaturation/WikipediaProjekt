@@ -144,6 +144,7 @@ public class GUI
 
 
 
+
         //TODO Load Content from db
         JLabel titel = new JLabel("Test");
         titel.setBackground(Color.DARK_GRAY);
@@ -168,6 +169,8 @@ public class GUI
             }
         });
 
+        Putting_Green puttingGreen = new Putting_Green();
+
 
         centerPanel.add(titel);
         centerPanel.add(scrollPane);
@@ -175,8 +178,8 @@ public class GUI
         mainPanel.add(centerPanel , BorderLayout.CENTER);
         mainPanel.add(leftPanel , BorderLayout.WEST);
         mainPanel.add(rightPanel , BorderLayout.EAST);
-        mainPanel.add(new Putting_Green(), BorderLayout.NORTH);
-    //Hier weiterarbeiten an Interaktives einbetten
+        mainPanel.add(puttingGreen.createPuttingGreenPanel(), BorderLayout.NORTH);
+        //Hier weiterarbeiten an Interaktives einbetten (auch mal machen)
         bLayout.setHgap(50);
         bLayout.setVgap(100);
 
