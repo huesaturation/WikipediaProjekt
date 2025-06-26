@@ -42,8 +42,9 @@ public class Putting_Green extends JPanel implements ActionListener {
 
         initUI();
     }
+    //TODO make it fit with the color Scheme of the App
 
-    //TODO fixing horrible ai code to actually work with our system
+    //fixing horrible ai code to actually work with our system
 
     public  JPanel createPuttingGreenPanel() {
         // Hauptpanel für alles

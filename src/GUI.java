@@ -178,8 +178,9 @@ public class GUI
         mainPanel.add(centerPanel , BorderLayout.CENTER);
         mainPanel.add(leftPanel , BorderLayout.WEST);
         mainPanel.add(rightPanel , BorderLayout.EAST);
+        //TODO takes up way too much space
         mainPanel.add(puttingGreen.createPuttingGreenPanel(), BorderLayout.NORTH);
-        //Hier weiterarbeiten an Interaktives einbetten (auch mal machen)
+        //TODO Hier weiterarbeiten an Interaktives einbetten (auch mal machen)
         bLayout.setHgap(50);
         bLayout.setVgap(100);
 
