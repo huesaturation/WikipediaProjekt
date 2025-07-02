@@ -13,7 +13,8 @@ public class GUI
     //Do not use this to load page use the functions instead!
     private CardLayout pageLayout = new CardLayout();
     //last loaded search querry
-    private String searchquerry;
+    //needs to be not NULL because the page is preloaded with a searchquerry
+    private String searchquerry = "Actin";
     private JPanel mainPanel = new JPanel();
 
     public GUI()
@@ -51,6 +52,8 @@ public class GUI
 
     public void loadSearchPage()
     {
+        searchquerry = "Actin";
+
         mainPanel.removeAll();
 
         mainPanel.add(getArticlePage() , "article");
@@ -145,8 +148,8 @@ public class GUI
 
 
 
-        //TODO Load Content from db
-        JLabel titel = new JLabel("Test");
+
+        JLabel titel = new JLabel(searchquerry);
         titel.setBackground(Color.DARK_GRAY);
         titel.setForeground(Color.white);
 
@@ -179,11 +182,11 @@ public class GUI
         mainPanel.add(leftPanel , BorderLayout.WEST);
         mainPanel.add(rightPanel , BorderLayout.EAST);
         //TODO takes up way too much space
-        mainPanel.add(puttingGreen.createPuttingGreenPanel(), BorderLayout.NORTH);
-        //TODO Hier weiterarbeiten an Interaktives einbetten (auch mal machen)
+        JPanel interactive = InteractiveRetriever.retrieveInteractive(searchquerry);
+        interactive.setSize(1920 , 10);
+        mainPanel.add(interactive , BorderLayout.NORTH);
         bLayout.setHgap(50);
         bLayout.setVgap(100);
-
 
         return mainPanel;
     }

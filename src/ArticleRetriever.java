@@ -4,6 +4,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Locale;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class ArticleRetriever {
@@ -24,6 +26,17 @@ public class ArticleRetriever {
     public static String retrieveArticle(String title) {
         String sql = "SELECT id, article_name, content FROM articles WHERE article_name = ?"; // SQL-Abfrage
         String content = "";
+
+        if (Objects.equals(title.toLowerCase(), "golf"))
+        {
+            //TODO Add Article
+            return "Golf lorem ipsum";
+        }
+        else if (title.equalsIgnoreCase("max verstappen"))
+        {
+            //TODO Add Arcticle
+            return "Max Verstappen lorem ipsum";
+        }
 
         try (Connection conn = DriverManager.getConnection(URL);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -46,5 +59,6 @@ public class ArticleRetriever {
             System.out.println("Fehler beim Abrufen des Artikels: " + e.getMessage());
             return e.getMessage();
         }
-       return content; }
+       return content;
+    }
 }
