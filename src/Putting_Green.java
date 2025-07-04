@@ -5,8 +5,8 @@ import java.awt.geom.Ellipse2D;
 
 public class Putting_Green extends JPanel implements ActionListener {
 
-    private static final int WIDTH = 800;
-    private static final int HEIGHT = 400;
+    private static final int WIDTH = 600;
+    private static final int HEIGHT = 300;
     private static final double HOLE_RADIUS = 15;
     private static final double BALL_RADIUS = 12;
     private static final int MAX_SHOTS = 5;
@@ -33,6 +33,7 @@ public class Putting_Green extends JPanel implements ActionListener {
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setBackground(new Color(60, 180, 75)); // Grüner Rasen
 
+
         holePos = new Point(WIDTH - 80, HEIGHT / 2);
         ballPos = new Point.Double(80, HEIGHT / 2.0);
         shots = 0;
@@ -44,7 +45,7 @@ public class Putting_Green extends JPanel implements ActionListener {
     }
     //TODO make it fit with the color Scheme of the App
 
-    //fixing horrible ai code to actually work with our system
+
 
     public  JPanel createPuttingGreenPanel() {
         // Hauptpanel für alles
@@ -93,7 +94,7 @@ public class Putting_Green extends JPanel implements ActionListener {
         controlPanel.add(shootButton, c);
 
         statusLabel = new JLabel("Schläge: 0 / " + MAX_SHOTS + "  |  Winkel: 0°  |  Stärke: 50");
-        statusLabel.setForeground(Color.white);
+        statusLabel.setForeground(Color.darkGray);
         statusLabel.setFont(new Font("SansSerif", Font.BOLD, 14));
         statusLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
@@ -101,12 +102,15 @@ public class Putting_Green extends JPanel implements ActionListener {
         strengthSlider.addChangeListener(e -> updateStatus());
 
         mainPanel.add(this, BorderLayout.CENTER);
-        mainPanel.add(controlPanel, BorderLayout.SOUTH);
+        mainPanel.add(controlPanel, BorderLayout.EAST);
         mainPanel.add(statusLabel, BorderLayout.NORTH);
+
+        addRestartButton(controlPanel, c);
+
+
 
         return mainPanel;
     }
-
     private void initUI() {
         //frame = new JFrame("Putting Green Simulator");
         //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -155,12 +159,13 @@ public class Putting_Green extends JPanel implements ActionListener {
         controlPanel.add(shootButton, c);
 
         statusLabel = new JLabel("Schläge: 0 / " + MAX_SHOTS + "  |  Winkel: 0°  |  Stärke: 50");
-        statusLabel.setForeground(Color.white);
+        statusLabel.setForeground(Color.darkGray);
         statusLabel.setFont(new Font("SansSerif", Font.BOLD, 14));
         statusLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
         angleSlider.addChangeListener(e -> updateStatus());
         strengthSlider.addChangeListener(e -> updateStatus());
+
 
         //frame.add(this, BorderLayout.CENTER);
         //frame.add(controlPanel, BorderLayout.SOUTH);
@@ -285,5 +290,30 @@ public class Putting_Green extends JPanel implements ActionListener {
             new Putting_Green();
         });
     }
+    private void addRestartButton(JPanel controlPanel, GridBagConstraints c) {
+        JButton restartButton = new JButton("Erneut starten");
+        restartButton.setBackground(new Color(70, 170, 200));
+        restartButton.setFocusPainted(false);
+        restartButton.setFont(new Font("SansSerif", Font.BOLD, 16));
+        restartButton.addActionListener(e -> {
+            // Spielzustand zurücksetzen
+            holePos = new Point(WIDTH - 80, HEIGHT / 2);
+            ballPos = new Point.Double(80, HEIGHT / 2.0);
+            shots = 0;
+            gameOver = false;
+
+            // UI zurücksetzen
+            updateStatus();
+            shootButton.setEnabled(true);
+            repaint();
+            timer.stop();
+        });
+
+        c.gridx = 0;
+        c.gridy = 3;
+        c.gridwidth = 2;
+        controlPanel.add(restartButton, c);
+    }
+
 }
 

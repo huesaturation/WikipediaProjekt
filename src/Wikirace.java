@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
-
+//leider nicht fertig geworden bzw wurde aus zeitgründen nicht integriert
 public class Wikirace extends JPanel
 {
     //TODO Article needs to be implemented as class
