@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.util.Objects;
 
-import static java.lang.foreign.MemorySegment.NULL;
+//import static java.lang.foreign.MemorySegment.NULL;
 
 public class InteractiveRetriever
 {

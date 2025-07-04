@@ -30,3 +30,5 @@ bin/
 ###Custom ####
 /src/Artikel.db
 Artikel.db
+/src/META-INF/MANIFEST.MF
+/.idea/artifacts/WikipediaProjekt_jar.xml
