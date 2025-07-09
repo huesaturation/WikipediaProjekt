@@ -10,14 +10,14 @@ import java.sql.Statement;
 
 public class SQLiteArticleSaver {
 
-    private static final String URL = "jdbc:sqlite:Artikel.db"; // Ersetze dies durch den Pfad zu deiner Datenbank
+    private static final String URL = "jdbc:sqlite:Artikel.db"; //ort an dem die datenbank ist sucht immer neu nach der datenbank egal wo sie ist wenn sie im projekt ist
 
     public static void main(String[] args) {
         createNewDatabase(); // Datenbank erstellen
         createNewTable(); // Tabelle erstellen
 
         // Beispielverzeichnis, in dem die Textdateien gespeichert sind
-        String directoryPath = "D:\\aadownload (3)\\Wikipediaprojekt\\articles";
+        String directoryPath = "D:\\aadownload (3)\\Wikipediaprojekt\\articles";//muss durch einen ordner mit txt datein ersetzt werden
         processArticles(directoryPath); // Artikel verarbeiten und in die Datenbank einfügen
     }
 
